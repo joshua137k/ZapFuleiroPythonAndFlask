@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cérebro do {{username}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <h1 class="green-background">Cérebro do {{username}}:</h1>
+
+    <h1 class="white-background">Conversas:</h1>
+    <div id="conversa1" class="col s12">
+        <ul class="collection">
+            {% for message in messages %}
+                <li class="message-container {% if message.sender == username %}message-sent{% else %}message-received{% endif %}">
+                    {% set parts = message.sender.split('|||') %}
+                    <div class="avatar">
+                        {% if parts|length > 1 %}
+                            {% set profile_pic = parts[1] %}
+                            <img src="{{ url_for('static', filename='fotos/' + profile_pic) }}" alt="Profile Picture" width="50" height="50">
+                        {% endif %}
+                    </div>
+                    <div class="message-content">
+                        <span class="sender">{{ parts[0] }}</span>
+                        <p class="message">{{ message.text }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form method="POST" action="/send_message">
+            <input type="text" name="message" placeholder="Digite sua mensagem...">
+            <input type="hidden" name="conversa" value="1">
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div id="footer">
+        <p>© 2023 Joshua's Brain. Todos os direitos reservados.</p>
+    </div>
+</body>
+</html>
+

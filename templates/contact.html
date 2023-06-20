@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Contato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contac.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="header">
+        <h1>Página de Contato</h1>
+    </div>
+    
+    <div id="chat">
+        <div id="file-buttons"></div>
+    </div>
+        
+    <div id="footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
+            Criar Novo Post
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPostModalLabel">Novo Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="create-post-form" action="/create_post" method="post">
+                        <input type="hidden" name="contact" value="{{ username }}">
+                        <div class="form-group">
+                            <label for="postName">Nome do Post:</label>
+                            <input type="text" class="form-control" id="postName" name="postName">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-primary">Criar Novo Post</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='contac.js') }}"></script>
+</body>
+</html>
+

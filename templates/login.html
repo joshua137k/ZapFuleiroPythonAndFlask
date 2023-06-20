@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login no Cérebro do Joshua</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='login_register.css') }}">
+</head>
+<body>
+	<h1>Login no Cérebro do Joshua</h1>
+	{% if error %}
+	    <p class="error">{{ error }}</p>
+    {% endif %}
+	<form action="login" method="post">
+		<label for="username">Nome de Usuário:</label>
+		<input type="text" id="username" name="username" required><br><br>
+
+		<label for="password">Senha:</label>
+		<input type="password" id="password" name="password" required><br><br>
+
+		<input type="submit" value="Login">
+	</form>
+	<a>Não tem uma conta? <a href="register">Registre-se aqui</a>.</a>
+</body>
+</html>
+
